@@ -42,7 +42,7 @@ RSpec.describe WordsController, type: :controller do
 
     context 'valid params' do
       let(:params) do
-        { word: { content: 'cat', language: 'english' } }
+        { word: { content: 'cat', language: 'English' } }
       end
       it 'creates the new word' do
         expect  { subject }.to change(Word, :count).from(0).to(1)
@@ -61,9 +61,9 @@ RSpec.describe WordsController, type: :controller do
 
   describe 'GET show' do
     before { get :show, params: params }
-    let (:params) do
+    let(:params) do
       { id: word.id }
-    end 
+    end
     let!(:word) { create(:word) }
     it 'assigns @word' do
       expect(assigns(:word)).to eq(word)

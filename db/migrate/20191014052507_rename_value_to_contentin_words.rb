@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rename cloumn value to content migration
 class RenameValueToContentinWords < ActiveRecord::Migration[5.2]
   def self.up
     rename_column :words, :value, :content
