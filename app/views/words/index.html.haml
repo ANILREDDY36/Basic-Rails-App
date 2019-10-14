@@ -5,10 +5,12 @@
   %thead.thead-dark
     %th{scope: "col"} Id
     %th{scope: "col"} Content
+    %th{scope: "col"} Language
     %th{scope: "col"} Actions
   %tbody
     - @words.each do |word|
       %tr
         %td= word.id
         %td= word.content
+        %td= word.language
         %td= link_to "Show", word, class: 'btn btn-primary'
