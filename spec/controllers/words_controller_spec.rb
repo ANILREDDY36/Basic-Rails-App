@@ -51,7 +51,7 @@ RSpec.describe WordsController, type: :controller do
 
     context 'invalid params' do
       let(:params) do
-        { word: { content: 'cat' } }
+        { word: { content: '' } }
       end
       it 'does not creates the new word' do
         expect  { subject }.not_to change(Word, :count)
