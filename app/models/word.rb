@@ -2,5 +2,5 @@
 
 # word Active Model
 class Word < ApplicationRecord
-  validates :value, :language, presence: true
+  validates :content, :language, presence: true
 end

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :word do
-    value { 'bat' }
+    content { 'bat' }
     language { 'english' }
   end
 end
