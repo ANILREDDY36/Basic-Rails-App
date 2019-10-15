@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :word do
-    content { 'bat' }
-    language
+  factory :language do
+    name { 'English' }
   end
 end
