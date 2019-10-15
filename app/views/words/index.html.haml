@@ -12,5 +12,5 @@
       %tr
         %td= word.id
         %td= word.content
-        %td= word.language
+        %td= word.language&.name
         %td= link_to "Show", word, class: 'btn btn-primary'
