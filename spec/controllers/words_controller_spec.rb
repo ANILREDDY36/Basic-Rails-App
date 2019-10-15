@@ -46,7 +46,7 @@ RSpec.describe WordsController, type: :controller do
         { word: { content: 'cat', language_id: language.id } }
       end
       it 'creates the new word' do
-        expect  { subject }.to change(Word, :count).from(0).to(1)
+        expect { subject }.to change(Word, :count).from(0).to(1)
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.describe WordsController, type: :controller do
         { word: { content: '' } }
       end
       it 'does not creates the new word' do
-        expect  { subject }.not_to change(Word, :count)
+        expect { subject }.not_to change(Word, :count)
       end
     end
   end
@@ -99,13 +99,13 @@ RSpec.describe WordsController, type: :controller do
         { id: word.id, word: { content: 'dog', language_id: language_2.id } }
       end
       it 'updates word' do
-        expect  { subject }
-        .to change {word.reload.content}
-        .from('bat')
-        .to('dog')
-        .and change { word.reload.language }
-        .from(language_1)
-        .to(language_2)
+        expect { subject }
+          .to change { word.reload.content }
+          .from('bat')
+          .to('dog')
+          .and change { word.reload.language }
+          .from(language_1)
+          .to(language_2)
       end
     end
 
@@ -114,7 +114,21 @@ RSpec.describe WordsController, type: :controller do
         { id: word.id, word: { content: '' } }
       end
       it 'does not update word' do
-        expect  { subject }.not_to change {word.reload.content}
+        expect { subject }.not_to change(Word, word.reload.language)
+      end
+    end
+  end
+
+  describe 'DELETE destroy' do
+    subject { delete :destroy, params: params }
+    let!(:word) { create(:word) }
+    context 'valid params' do
+      let(:params) do
+        { id: word.id }
+      end
+
+      it 'deletes word' do
+        expect { subject }.to change(Word, :count).from(1).to(0)
       end
     end
   end
