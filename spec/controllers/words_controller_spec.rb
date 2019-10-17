@@ -154,10 +154,9 @@ RSpec.describe WordsController, type: :controller do
     let(:params) do
       { id: word.id }
     end
-    let!(:word) { create(:word) }
-
+    let!(:word) { create(:word, user: user) }
+    let(:user) { create(:user) }
     context 'when user has signed in' do
-      let(:user) { create(:user) }
       before do
         sign_in(user)
         subject
@@ -189,12 +188,11 @@ RSpec.describe WordsController, type: :controller do
 
   describe 'PUT update' do
     subject { put :update, params: params }
-    let!(:word) { create(:word, content: 'bat', language: language_1) }
+    let!(:word) { create(:word, user: user, content: 'bat', language: language_1) }
     let!(:language_1) { create(:language, name: 'English') }
     let!(:language_2) { create(:language, name: 'Polish') }
-
+    let!(:user) { create(:user) }
     context 'when user has signed in' do
-      let(:user) { create(:user) }
       before { sign_in(user) }
       context 'valid params' do
         let(:params) do
@@ -253,7 +251,7 @@ RSpec.describe WordsController, type: :controller do
     context 'when user has signed in' do
       let(:user) { create(:user) }
       before { sign_in(user) }
-      let!(:word) { create(:word) }
+      let!(:word) { create(:word, user: user) }
       context 'valid params' do
         let(:params) do
           { id: word.id }
