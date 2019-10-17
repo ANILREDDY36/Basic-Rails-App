@@ -9,11 +9,11 @@ class WordsController < ApplicationController
   end
 
   def new
-    @word = Word.new
+    @word = current_user.words.build
   end
 
   def create
-    @word = Word.new(word_params)
+    @word = current_user.words.build(word_params)
     if @word.save
       redirect_to(words_path)
     else

@@ -8,6 +8,7 @@ RSpec.describe Word, type: :model do
   end
   describe 'associations' do
     it { is_expected.to belong_to(:language) }
+    it { is_expected.to belong_to(:user) }
   end
   describe 'columns' do
     it { is_expected.to validate_presence_of(:content) }

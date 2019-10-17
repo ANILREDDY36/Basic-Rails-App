@@ -4,5 +4,6 @@ FactoryBot.define do
   factory :word do
     content { 'bat' }
     language
+    user
   end
 end

@@ -6,6 +6,7 @@
     %th{scope: "col"} Id
     %th{scope: "col"} Content
     %th{scope: "col"} Language
+    %th{scope: "col"} User
     %th{scope: "col"} Actions
   %tbody
     - @words.each do |word|
@@ -13,6 +14,7 @@
         %td= word.id
         %td= word.content
         %td= word.language&.name
+        %td= word.user&.email
         %td
           = link_to "Show", word, class: 'btn btn-primary'
           = link_to "Edit", edit_word_path(word), class: 'btn btn-primary'
