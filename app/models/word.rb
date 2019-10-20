@@ -12,7 +12,7 @@ class Word < ApplicationRecord
 
   validates :content, :language, presence: true
   validate :translation_language_cannot_same_as_word_language
-  accepts_nested_attributes_for :translations
+  accepts_nested_attributes_for :translations, allow_destroy: true
 
   paginates_per 5
 
