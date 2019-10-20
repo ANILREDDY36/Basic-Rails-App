@@ -2,3 +2,7 @@
 = @word.content 
 %br
 = @word.language&.name
+
+- if @word.translations.any?
+  %h3 Translations
+  %p= @word.translations.pluck(:content).join(',')
