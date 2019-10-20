@@ -14,8 +14,8 @@
       %tr
         %td= word.id
         %td= word.content
-        %td= word.language&.name
-        %td= word.user&.email
+        %td= word.language.name
+        %td= word.user.secret_email
         %td= word.translations.size
         %td
           = link_to "Show", word, class: 'btn btn-primary'
