@@ -5,7 +5,7 @@
     = f.fields_for :translations do |t|
       = t.input :content, input_html: { class: 'form-control' }
       = t.association :language, input_html: { class: 'form-control' }
-      = t.link_to_remove('Remove this Translation')
-    %p= f.link_to_add('Add a Translation', :translations)
+      %p= t.link_to_remove('Remove this Translation', class: 'btn btn-danger')
+    %p= f.link_to_add('Add a Translation', :translations, class: 'btn btn-primary')
   .form-actions
     = f.button :submit, class: 'btn btn-primary'

@@ -1,0 +1,18 @@
+.container-fluid
+  .row
+    .col-md-12
+      %ul.nav.nav-pills
+        %li.nav-item
+          = link_to('Home', words_path, class: 'nav-link active')
+        %li.nav-item
+          = link_to('New Word', new_word_path, class: 'nav-link')
+        - if user_signed_in?
+          %li.nav-item
+            = link_to('Edit Registration', edit_user_registration_path, class: 'nav-link')
+          %li.nav-item
+            = link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link')
+        - else
+          %li.nav-item
+            = link_to('Register', new_user_registration_path, class: 'nav-link')  
+          %li.nav-item
+            = link_to('Login', new_user_session_path, class: 'nav-link')

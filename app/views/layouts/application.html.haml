@@ -8,25 +8,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav.navbar.navbar-default
-      .container
-        .navbar-brand
-          = link_to "Home", words_path
-        - if user_signed_in?
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              = link_to "New Word", new_word_path
-            %li
-              = link_to "Edit Registration", edit_user_registration_path  
-            %li
-              = link_to "Sign Out", destroy_user_session_path, method: :delete
-        - else
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              = link_to "Sign Up", new_user_registration_path
-            %li
-              = link_to "Sign In", new_user_session_path
-    .container
-      - flash.each do |name, msg|
-        = content_tag :div, msg, class: "alert"
-      = yield
+    .container.mt-2
+      = render 'shared/navs'
+      = render 'shared/messages'
+      .container-fluid
+        .row
+          .col-md-12.mt-3
+            = yield
