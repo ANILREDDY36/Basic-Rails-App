@@ -4,9 +4,11 @@
       %ul.nav.nav-pills
         %li.nav-item
           = link_to('Home', words_path, class: 'nav-link active')
-        %li.nav-item
-          = link_to('New Word', new_word_path, class: 'nav-link')
         - if user_signed_in?
+          %li.nav-item
+            = link_to('New Word', new_word_path, class: 'nav-link')
+          %li.nav-item
+            = link_to('New Game', games_path, method: :post, class: 'nav-link')
           %li.nav-item
             = link_to('Edit Registration', edit_user_registration_path, class: 'nav-link')
           %li.nav-item
