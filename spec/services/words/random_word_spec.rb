@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Words::RandomWord do
-  describe '#call'
+  describe '#call' do
     subject { described_class.new.call }
 
     context 'when word does not have any translations' do
@@ -12,15 +12,16 @@ describe Words::RandomWord do
       end
     end
 
-    context 'when word have some translations' do
+    context 'when word has some translations' do
       let!(:word) { create(:word) }
 
       before do
         word.translations << create(:word)
       end
+
       it do
         expect(subject).to eq(word)
       end
     end
-  end  
+  end
 end

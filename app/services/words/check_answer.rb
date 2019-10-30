@@ -25,8 +25,8 @@ module Words
     end
 
     def update_game_stats(success:)
-      return game.increment!(:good_answers_count) if success == true
-      game.increment!(:bad_answers_count)
+      return game.increment!(:good_answer_count) if success == true
+      game.increment!(:bad_answer_count)
     end
   end
 end

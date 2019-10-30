@@ -22,7 +22,7 @@ RSpec.describe GamesController, type: :controller do
     end
 
     context 'when user is NOT signed in' do
-      it 'does not redirects to new game' do
+      it 'does not redirect to new game' do
         expect(subject).not_to redirect_to(Game.last)
       end
 
@@ -40,11 +40,13 @@ RSpec.describe GamesController, type: :controller do
       let(:user) { create(:user) }
 
       before { sign_in(user) }
+
       let(:params) do
         { id: game.id }
       end
       let!(:game) { create(:game, user: user) }
       let!(:word) { create(:word, :with_translations) }
+
       it 'assigns @game' do
         subject
         expect(assigns(:game)).to eq(game)
@@ -68,16 +70,18 @@ RSpec.describe GamesController, type: :controller do
       let!(:game) { create(:game) }
       let!(:word) { create(:word) }
 
-      it 'does not assigns @game' do
+      it 'does not assign @game' do
         subject
         expect(assigns(:game)).not_to eq(game)
       end
 
-      it 'does not assigns @word' do
+      it 'does not assign @word' do
         subject
         expect(assigns(:word)).not_to eq(word)
       end
-      it 'does not renders the show template' do
+
+      it 'does not render the show template' do
+        subject
         expect(response).not_to render_template(:show)
       end
 
@@ -87,4 +91,4 @@ RSpec.describe GamesController, type: :controller do
       end
     end
   end
-end  
+end
