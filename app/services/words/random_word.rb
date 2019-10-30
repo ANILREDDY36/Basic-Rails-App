@@ -3,7 +3,7 @@ module Words
     def call
       get_random_word
     end
-  
+
     private
 
     def get_random_word

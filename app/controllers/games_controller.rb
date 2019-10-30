@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# WordsController
+# Games Conteoller
 class GamesController < ApplicationController
   # before_action :set_game, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[show create]

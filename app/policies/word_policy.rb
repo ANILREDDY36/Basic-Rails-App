@@ -7,20 +7,20 @@ class WordPolicy
   end
 
   def edit?
-    user_word?
+    word_belongs_to_user?
   end
 
   def update?
-    user_word?
+    word_belongs_to_user?
   end
 
   def destroy?
-    user_word?
+    word_belongs_to_user?
   end
 
   private
 
-  def user_word?
-  	user == word.user
+  def word_belongs_to_user?
+    user == word.user
   end
 end

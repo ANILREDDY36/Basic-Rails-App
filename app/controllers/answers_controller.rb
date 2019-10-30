@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
-# WordsController
+# AnswersController
 class AnswersController < ApplicationController
-  # before_action :set_game, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[create]
 
-  def index
-
-  end
-
   def create
-    checker = words::CheckAnswer.new(word, game, answer).call
-    redirect_back(fallback_location: root_path, notice: message(checker))
+    authorize(game, :access?)
+    checker = Words::CheckAnswer.new(word, game, answer)
+    @checker = checker.call
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
@@ -20,16 +19,11 @@ class AnswersController < ApplicationController
     Word.find(params[:answer][:word_id])
   end
 
-  def word
-    Game.find(params[:answer][:game_id])
-  end
-
   def answer
     params[:answer][:content]
   end
 
-  def message(checker)
-    return 'Good Answer' if checker == true
-    'Bad Answer'
+  def game
+    Game.find(params[:answer][:game_id])
   end
-end  
+end

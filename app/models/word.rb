@@ -14,7 +14,7 @@ class Word < ApplicationRecord
   validate :translation_language_cannot_same_as_word_language
   accepts_nested_attributes_for :translations, allow_destroy: true
 
-  paginates_per 5
+  paginates_per 10
 
   def translation_language_cannot_same_as_word_language
     return if translations.none? { |translation| translation.language == language }

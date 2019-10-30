@@ -1,21 +1,39 @@
 require 'rails_helper'
 
 describe Words::CheckAnswer do
-  describe '#call'
-    subject { described_class.new(word,answer).call }
+  describe '#call' do
+    subject { described_class.new(word, game, answer) }
+    
+    let(:game) { create(:game) }
 
     context 'when user provided good answer' do
-      let!(:word) { create(:word, :with_translations) }
-      let!(:answer) { word.translations.first.content }
+      let(:word) { create(:word, :with_translations) }
+      let(:answer) { word.translations.first.content }
 
-      it { is_expected.to eq(true)
+      it { expect(subject.call).to eq(true) }
+
+      it 'increments good answers count' do
+        expect { subject.call }.to change { game.reload.good_answer_count }.from(0).to(1)
+      end
+
+      it 'does not increments good answers count' do
+        expect { subject.call }.to change { game.reload.bad_answer_count }
+      end
     end
 
     context 'when user provided bad answer' do
-      let!(:word) { create(:word, :with_translations) }
-      let!(:answer) { 'jfjewnfenw' }
+      let(:word) { create(:word, :with_translations) }
+      let(:answer) { 'jfjewnfenw' }
 
-      it { is_expected.to eq(false)
+      it { expect(subject.call).to eq(false) }
+
+      it 'increments bad answers count' do
+        expect { subject.call }.to change { game.reload.bad_answer_count }.from(0).to(1)
+      end
+
+      it 'does not increments bad answers count' do
+        expect { subject.call }.to change { game.reload.good_answer_count }
+      end
     end
   end  
 end
